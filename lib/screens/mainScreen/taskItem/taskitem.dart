@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:todo_app/objects/taskObject/listTask.dart';
 import 'package:todo_app/objects/taskObject/taskProperties.dart';
 
@@ -17,6 +16,47 @@ class TaskItem extends StatefulWidget {
 }
 
 class _TaskItemState extends State<TaskItem> {
+  deleteTask() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+            // side: BorderSide(color: Colors.green, width: 3),
+            borderRadius: BorderRadius.all(
+                Radius.circular(TaskItem._itemProps.borderRadius))),
+        title: const Text('CONFIRM',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+        content: const Text(
+          'Do you want to delete this Task?',
+          style: TextStyle(
+            color: Colors.red,
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              if (ListTask.tasks[widget.index].status == Status.DONE)
+                --ListTask.taskDone;
+              ListTask.tasks.removeAt(widget.index);
+              Navigator.pop(context, 'OK');
+            },
+            child: const Text(
+              'OK',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   viewTask() {
     // TODO
   }
@@ -24,13 +64,16 @@ class _TaskItemState extends State<TaskItem> {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: viewTask,
+      onLongPress: deleteTask,
       child: Container(
         decoration: BoxDecoration(
             borderRadius:
                 BorderRadius.circular(TaskItem._itemProps.borderRadius),
             color: ListTask.tasks[widget.index].important == true
                 ? TaskItem._itemProps.itemImportantBgrColor
-                : TaskItem._itemProps.itemBackground),
+                : (ListTask.tasks[widget.index].status == Status.DONE
+                    ? TaskItem._itemProps.itemDoneBgrColor
+                    : TaskItem._itemProps.itemBackground)),
         padding: EdgeInsets.all(TaskItem._itemProps.padding),
         // margin: EdgeInsets.all(TaskItem._itemProps.margin),
         //color: Colors.amber,
@@ -71,19 +114,27 @@ class _TaskItemState extends State<TaskItem> {
             ),
             Expanded(
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       ListTask.tasks[widget.index].taskName,
+                      maxLines: TaskItem._itemProps.maxLine,
+                      overflow: TextOverflow.ellipsis,
                       //textAlign: TextAlign.left,
                       style: TextStyle(
+                          decoration:
+                              ListTask.tasks[widget.index].status == Status.DONE
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
                           color: TaskItem._itemProps.textColor,
                           fontSize: TaskItem._itemProps.titleSize,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       ListTask.tasks[widget.index].description,
+                      maxLines: TaskItem._itemProps.maxLine,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: TaskItem._itemProps.textColor,
                           fontSize: TaskItem._itemProps.desSize),
@@ -98,16 +149,20 @@ class _TaskItemState extends State<TaskItem> {
                     ? TaskItem._itemProps.repeatOnce
                     : TaskItem._itemProps.repeat,
                 size: TaskItem._itemProps.iconSize,
-                color: TaskItem._itemProps.iconActiveColor,
+                color: ListTask.tasks[widget.index].important == true
+                    ? TaskItem._itemProps.iconImpActiveColor
+                    : TaskItem._itemProps.iconActiveColor,
               ),
             ),
             Padding(
               padding: EdgeInsets.all(TaskItem._itemProps.padding / 3),
               child: Icon(Icons.alarm,
                   size: TaskItem._itemProps.iconSize,
-                  color: ListTask.tasks[widget.index].remind == true
-                      ? TaskItem._itemProps.iconActiveColor
-                      : TaskItem._itemProps.iconOffColor),
+                  color: ListTask.tasks[widget.index].remind == false
+                      ? TaskItem._itemProps.iconOffColor
+                      : (ListTask.tasks[widget.index].important == true
+                          ? TaskItem._itemProps.iconImpActiveColor
+                          : TaskItem._itemProps.iconActiveColor)),
             ),
             SizedBox(
               width: TaskItem._itemProps.width,
@@ -124,18 +179,22 @@ class TaskItemProperties {
   double padding = 10;
   double height = 75;
   double width = 10;
-  double borderRadius = 30;
-  double titleSize = 24;
-  double desSize = 18;
-  Color itemBackground = Colors.black12;
-  Color itemImportantBgrColor = Colors.amberAccent;
-  Color textColor = Colors.white;
+  double borderRadius = 15;
+  double titleSize = 20;
+  double desSize = 16;
+  int maxLine = 1;
+  Color itemBackground = Colors.white;
+  Color itemDoneBgrColor = Colors.green.shade200;
+  Color itemImportantBgrColor = Colors.amber.shade100;
+  Color textColor = Colors.black54;
   bool checkBoxValue = true;
   Color checkboxActiveColor = Colors.green;
-  double checkBoxScale = 2.0;
+  double checkBoxScale = 1.5;
   IconData repeatOnce = Icons.repeat_one;
   IconData repeat = Icons.repeat;
   double iconSize = 26;
-  Color iconActiveColor = Colors.green;
+  Color iconActiveColor = Colors.green.shade400;
+  Color iconImpActiveColor = Colors.amber;
   Color iconOffColor = Colors.black26;
+  // Color deleteTaskWarning = Colors.red;
 }

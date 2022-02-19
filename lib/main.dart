@@ -36,6 +36,42 @@ void main() {
       remind: true,
       status: Status.DOING,
       important: false));
+  ListTask.tasks.add(TaskProperties(
+      name: "Go to zoo abcd abc dab cd abcd abcd abcd abcd",
+      description:
+          "At 3.00 PM abc c abc abcb acb ab c abc ba cb cba cbac bac bac bac",
+      repeat: Repeat.ONCE,
+      remind: true,
+      status: Status.DOING,
+      important: false));
+  ListTask.tasks.add(TaskProperties(
+      name: "Go back home",
+      description: "At 12.00 AM",
+      repeat: Repeat.ONCE,
+      remind: true,
+      status: Status.DOING,
+      important: true));
+  ListTask.tasks.add(TaskProperties(
+      name: "Go to zoo",
+      description: "At 3.00 PM",
+      repeat: Repeat.ONCE,
+      remind: true,
+      status: Status.DOING,
+      important: false));
+  ListTask.tasks.add(TaskProperties(
+      name: "Go back home",
+      description: "At 12.00 AM",
+      repeat: Repeat.ONCE,
+      remind: true,
+      status: Status.DOING,
+      important: true));
+  ListTask.tasks.add(TaskProperties(
+      name: "Go to zoo",
+      description: "At 3.00 PM",
+      repeat: Repeat.ONCE,
+      remind: true,
+      status: Status.DOING,
+      important: false));
   for (int index = 0; index < ListTask.tasks.length; index++)
     if (ListTask.tasks[index].status == Status.DONE) ++ListTask.taskDone;
   runApp(MyApp());
@@ -45,11 +81,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            actions: [],
-          ),
-          body: MainScreen()),
+      home: MainScreen(),
     );
   }
 }
