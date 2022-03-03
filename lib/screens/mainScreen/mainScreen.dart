@@ -4,6 +4,7 @@ import 'package:todo_app/objects/taskObject/listTask.dart';
 import 'package:todo_app/objects/taskObject/taskProperties.dart';
 import 'package:todo_app/screens/mainScreen/addTaskItem/addTaskButton.dart';
 import 'package:todo_app/screens/mainScreen/taskItem/taskitem.dart';
+import 'package:todo_app/screens/notificationScreen/notification.dart';
 
 class MainScreen extends StatefulWidget {
   static MainScreenProperties mainPgProps = MainScreenProperties();
@@ -15,6 +16,20 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    super.initState();
+    NotificationApi.init();
+    listenNotification();
+  }
+
+  void listenNotification() {
+    NotificationApi.onNotifications.stream.listen(onclickNotification);
+  }
+
+  void onclickNotification(String? payload) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => Text('Clicked')));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

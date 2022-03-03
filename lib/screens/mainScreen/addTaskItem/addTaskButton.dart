@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/screens/notificationScreen/notification.dart';
 
 class AddTaskButton extends StatelessWidget {
   static AddButtonProperties _props = AddButtonProperties();
@@ -13,7 +14,8 @@ class AddTaskButton extends StatelessWidget {
           color: _props.color,
         ),
         onPressed: () {
-          // TODO
+          NotificationApi.showNotification(
+              title: 'Hello', body: 'This is a notification');
         },
       ),
     );
