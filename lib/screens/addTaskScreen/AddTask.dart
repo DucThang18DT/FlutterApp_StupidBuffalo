@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/screens/addTaskScreen/button.dart';
 import 'package:todo_app/screens/addTaskScreen/input_field.dart';
-import 'package:todo_app/screens/mainScreen/mainScreen.dart';
+
 
 import '../../objects/taskObject/listTask.dart';
 import '../mainScreen/taskItem/taskitem.dart';
-import 'package:todo_app/objects/taskObject/taskProperties.dart';
+import 'package:todo_app/objects/taskObject/taskProperties1.dart';
 
 
 class AddTaskPage extends StatefulWidget {

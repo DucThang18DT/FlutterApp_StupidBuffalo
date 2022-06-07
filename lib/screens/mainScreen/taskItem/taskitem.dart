@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/objects/taskObject/listTask.dart';
-import 'package:todo_app/objects/taskObject/taskProperties.dart';
+import 'package:todo_app/objects/taskObject/taskProperties1.dart';
 
 class TaskItem extends StatefulWidget {
   late int index;
