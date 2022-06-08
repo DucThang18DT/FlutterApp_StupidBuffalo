@@ -1,7 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyInputField extends StatelessWidget {
-
   final String hint;
   final String text;
   final TextEditingController? controller;
@@ -15,17 +15,16 @@ class MyInputField extends StatelessWidget {
     this.widget,
   }) : super(key: key);
 
-  static AddTaskProperties AddTaskProps = AddTaskProperties();
+  static AddTaskProperties addTaskProps = AddTaskProperties();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.all(AddTaskProps.padding),
+            padding: EdgeInsets.all(addTaskProps.padding),
             child: Text(
               this.text,
               style: TextStyle(
@@ -35,23 +34,24 @@ class MyInputField extends StatelessWidget {
             ),
           ),
           Container(
-            height: 50,
-            margin: EdgeInsets.symmetric(horizontal: AddTaskProps.margin),
-            padding: EdgeInsets.all(AddTaskProps.padding),
+            margin: EdgeInsets.symmetric(horizontal: addTaskProps.margin),
+            padding: EdgeInsets.all(addTaskProps.padding),
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
               ),
-              borderRadius: BorderRadius.circular(AddTaskProps.borderRadius),
+              borderRadius: BorderRadius.circular(addTaskProps.borderRadius),
             ),
             child: Row(
               children: [
                 Expanded(
                   child: TextFormField(
-                    readOnly: widget==null?false:true,
+                    readOnly: widget == null ? false : true,
+                    maxLines: null,
                     autofocus: true,
                     controller: controller,
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 5, bottom: 10),
                       hintText: this.hint,
                       border: InputBorder.none,
                       hintStyle: TextStyle(
@@ -60,7 +60,11 @@ class MyInputField extends StatelessWidget {
                     ),
                   ),
                 ),
-                widget==null?Container():Container(child: widget,)
+                widget == null
+                    ? Container()
+                    : Container(
+                        child: widget,
+                      )
               ],
             ),
           ),

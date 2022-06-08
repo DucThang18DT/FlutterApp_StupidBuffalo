@@ -2,17 +2,19 @@ enum Repeat { ONCE, EVERYDAY, CUSTOM }
 enum Status { DONE, LATE, DOING }
 
 class TaskProperties {
-  String? _taskName;
+  late String _taskName;
   String? _description;
   Repeat _repeat = Repeat.ONCE;
   Status _status = Status.DOING;
   DateTime _dueDate = DateTime.now();
   DateTime _completeTime = DateTime.now();
+  late String _startTime;
+  late String _endTime;
   bool _remind = true;
   bool _important = true;
 
   // getter
-  String? get taskName => _taskName;
+  String get taskName => _taskName;
   String? get description => _description;
   Repeat get repeat => _repeat;
   Status get status => _status;
@@ -20,6 +22,8 @@ class TaskProperties {
   DateTime get completeTime => _completeTime;
   bool get remind => _remind;
   bool get important => _important;
+  String get startTime => _startTime;
+  String get endTime => _endTime;
 
   // setter
   set newTaskName(String name) {
@@ -54,6 +58,14 @@ class TaskProperties {
     _important = important;
   }
 
+  set newStartTime(String startTime) {
+    _startTime = startTime;
+  }
+
+  set newEndTime(String endTime) {
+    _endTime = endTime;
+  }
+
   // Constructor
   TaskProperties(
       {String name = "Todo",
@@ -62,7 +74,9 @@ class TaskProperties {
       Status status = Status.DOING,
       bool remind = true,
       bool important = true,
-      String dueDate = '2022-02-17 19:15:00Z'}) {
+      String dueDate = '2022-02-17 19:15:00Z',
+      String startTime = "",
+      String endTime = ""}) {
     newTaskName = name;
     newDescription = description;
     newRepeat = repeat;
@@ -70,6 +84,8 @@ class TaskProperties {
     newStatus = status;
     newRemind = remind;
     newImportant = important;
+    newStartTime = startTime;
+    newEndTime = endTime;
   }
 
   // methods

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class Button extends StatelessWidget {
   final String label;
   final Function()? onTap;
-  Button({Key? key, required this.label, required this.onTap}) : super(key: key);
+  Button({Key? key, required this.label, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -19,12 +19,12 @@ class Button extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          label, style: TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-
-        ),
+          label,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

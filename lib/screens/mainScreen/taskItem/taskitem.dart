@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/objects/taskObject/listTask.dart';
 import 'package:todo_app/objects/taskObject/taskProperties1.dart';
+import 'package:todo_app/screens/addTaskScreen/AddTask.dart';
 
 class TaskItem extends StatefulWidget {
   late int index;
@@ -57,9 +58,13 @@ class _TaskItemState extends State<TaskItem> {
     );
   }
 
-  viewTask() {
-    // TODO
+  viewTask() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddTaskPage(widget.index)),
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -118,7 +123,7 @@ class _TaskItemState extends State<TaskItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ListTask.tasks[widget.index].taskName?.toString() ?? "",
+                      ListTask.tasks[widget.index].taskName.toString(),
                       // taskname return string or null
 
                       maxLines: TaskItem._itemProps.maxLine,

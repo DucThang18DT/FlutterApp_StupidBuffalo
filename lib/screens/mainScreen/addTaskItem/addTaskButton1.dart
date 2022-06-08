@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/addTaskScreen/AddTask.dart';
 import 'package:todo_app/screens/notificationScreen/notification.dart';
+import 'package:todo_app/objects/taskObject/listTask.dart';
 
 class AddTaskButton extends StatelessWidget {
   static AddButtonProperties _props = AddButtonProperties();
@@ -14,10 +15,11 @@ class AddTaskButton extends StatelessWidget {
           size: _props.size,
           color: _props.color,
         ),
-        onPressed: ()async {
-         await Navigator.push(
+        onPressed: () async {
+          await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddTaskPage()),
+            MaterialPageRoute(
+                builder: (context) => AddTaskPage(ListTask.tasks.length)),
           );
           NotificationApi.showNotification(
               title: 'Hello', body: 'This is a notification');
