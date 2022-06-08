@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyInputField extends StatelessWidget {
@@ -52,6 +53,7 @@ class MyInputField extends StatelessWidget {
                     autofocus: true,
                     controller: controller,
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 5, bottom: 10),
                       hintText: this.hint,
                       border: InputBorder.none,
                       hintStyle: TextStyle(

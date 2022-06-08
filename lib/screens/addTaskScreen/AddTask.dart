@@ -84,7 +84,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
                             text: 'Start Time',
                             widget: IconButton(
                               icon: Icon(Icons.access_time_rounded,
-                                  color: Colors.grey),
+                                  color: Colors.grey,
+                              ),
                               onPressed: () {
                                 _getTimeData(isStartTime: true);
                               },
@@ -129,6 +130,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                     ),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                             padding: EdgeInsets.only(top: 15, left: 10),
@@ -176,7 +178,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
          ListTask.tasks.add( TaskProperties(
              name: _titleControl.text,
              description: _descriptionControl.text,
-             repeat: Repeat.ONCE,
+             repeat: newRepeat=='One'?Repeat.ONCE:Repeat.EVERYDAY,
              remind: false,
              status: Status.DOING,
              important: true));
