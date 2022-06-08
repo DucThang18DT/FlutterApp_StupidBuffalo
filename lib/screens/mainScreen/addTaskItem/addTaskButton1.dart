@@ -22,7 +22,7 @@ class AddTaskButton extends StatelessWidget {
                 builder: (context) => AddTaskPage(ListTask.tasks.length)),
           );
           NotificationApi.showNotification(
-              title: 'Hello', body: 'This is a notification');
+              title: 'Success', body: 'Add new todo task');
         },
       ),
     );

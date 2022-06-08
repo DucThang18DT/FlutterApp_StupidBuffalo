@@ -44,109 +44,109 @@ class _MainScreenState extends State<MainScreen> {
           actions: [AddTaskButton()],
         ),
         body: Obx(
-              () => (ListTask.tasks.length > 0)
+          () => (ListTask.tasks.length > 0)
               ? Obx(() => ListView(
-            padding: EdgeInsets.all(MainScreen.mainPgProps.padding),
-            children: [
-              if (ListTask.taskDone < ListTask.tasks.length)
-                TextButton(
-                    onPressed: () {
-                      setState(() {
-                        if (MainScreen.taskExpand)
-                          MainScreen.taskExpand = false;
-                        else
-                          MainScreen.taskExpand = true;
-                      });
-                    },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Row(children: [
-                        Icon(
-                          MainScreen.taskExpand
-                              ? Icons.keyboard_arrow_down
-                              : Icons.keyboard_arrow_right,
-                          size: MainScreen.mainPgProps.iconSize,
-                          color: MainScreen.mainPgProps.iconColor,
-                        ),
-                        Text(
-                          "Con trau ngu",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize:
-                              MainScreen.mainPgProps.headerSize,
-                              color: MainScreen.mainPgProps.headerColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ]),
-                    )),
-              if (MainScreen.taskExpand)
-                for (int id = 0; id < ListTask.tasks.length; id++)
-                  if (ListTask.tasks[id].status != Status.DONE)
-                    TaskItem(id),
+                    padding: EdgeInsets.all(MainScreen.mainPgProps.padding),
+                    children: [
+                      if (ListTask.taskDone < ListTask.tasks.length)
+                        TextButton(
+                            onPressed: () {
+                              setState(() {
+                                if (MainScreen.taskExpand)
+                                  MainScreen.taskExpand = false;
+                                else
+                                  MainScreen.taskExpand = true;
+                              });
+                            },
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Row(children: [
+                                Icon(
+                                  MainScreen.taskExpand
+                                      ? Icons.keyboard_arrow_down
+                                      : Icons.keyboard_arrow_right,
+                                  size: MainScreen.mainPgProps.iconSize,
+                                  color: MainScreen.mainPgProps.iconColor,
+                                ),
+                                Text(
+                                  "To do",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize:
+                                          MainScreen.mainPgProps.headerSize,
+                                      color: MainScreen.mainPgProps.headerColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ]),
+                            )),
+                      if (MainScreen.taskExpand)
+                        for (int id = 0; id < ListTask.tasks.length; id++)
+                          if (ListTask.tasks[id].status != Status.DONE)
+                            TaskItem(id),
 
-              SizedBox(
-                height: 10,
-              ),
+                      SizedBox(
+                        height: 10,
+                      ),
 
-              if (ListTask.taskDone > 0)
-                TextButton(
-                    onPressed: () {
-                      setState(() {
-                        if (MainScreen.completedTaskExpand)
-                          MainScreen.completedTaskExpand = false;
-                        else
-                          MainScreen.completedTaskExpand = true;
-                      });
-                    },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Row(children: [
-                        Icon(
-                          MainScreen.completedTaskExpand
-                              ? Icons.keyboard_arrow_down
-                              : Icons.keyboard_arrow_right,
-                          size: MainScreen.mainPgProps.iconSize,
-                          color: MainScreen.mainPgProps.iconColor,
-                        ),
-                        Text(
-                          "Completed",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize:
-                              MainScreen.mainPgProps.headerSize,
-                              color: MainScreen.mainPgProps.headerColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ]),
-                    )),
-              if (MainScreen.completedTaskExpand)
-                for (int id = 0; id < ListTask.tasks.length; id++)
-                  if (ListTask.tasks[id].status == Status.DONE)
-                    TaskItem(id),
+                      if (ListTask.taskDone > 0)
+                        TextButton(
+                            onPressed: () {
+                              setState(() {
+                                if (MainScreen.completedTaskExpand)
+                                  MainScreen.completedTaskExpand = false;
+                                else
+                                  MainScreen.completedTaskExpand = true;
+                              });
+                            },
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Row(children: [
+                                Icon(
+                                  MainScreen.completedTaskExpand
+                                      ? Icons.keyboard_arrow_down
+                                      : Icons.keyboard_arrow_right,
+                                  size: MainScreen.mainPgProps.iconSize,
+                                  color: MainScreen.mainPgProps.iconColor,
+                                ),
+                                Text(
+                                  "Completed",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize:
+                                          MainScreen.mainPgProps.headerSize,
+                                      color: MainScreen.mainPgProps.headerColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ]),
+                            )),
+                      if (MainScreen.completedTaskExpand)
+                        for (int id = 0; id < ListTask.tasks.length; id++)
+                          if (ListTask.tasks[id].status == Status.DONE)
+                            TaskItem(id),
 
-              // Text('${ListTask.taskDone}'),
-            ],
-          ))
+                      // Text('${ListTask.taskDone}'),
+                    ],
+                  ))
               : Container(
-              alignment: Alignment.center,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'You have no task today.',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: MainScreen.mainPgProps.headerSize,
-                          color: MainScreen.mainPgProps.noTaskColor),
-                    ),
-                    Text(
-                      'Create now!',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: MainScreen.mainPgProps.headerSize,
-                          color: MainScreen.mainPgProps.noTaskColor),
-                    ),
-                  ])),
+                  alignment: Alignment.center,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'You have no task today.',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: MainScreen.mainPgProps.headerSize,
+                              color: MainScreen.mainPgProps.noTaskColor),
+                        ),
+                        Text(
+                          'Create now!',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: MainScreen.mainPgProps.headerSize,
+                              color: MainScreen.mainPgProps.noTaskColor),
+                        ),
+                      ])),
         ));
   }
 }
